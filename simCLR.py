@@ -13,6 +13,8 @@ from torch.utils.data import DataLoader
 from info_nce_updated import InfoNCE
 import csv
 from collections import defaultdict
+from scipy.spatial import KDTree
+
 
 def visual_iou(thresholds, ious_list, auc):
     plt.xlim(0, 1)
@@ -26,10 +28,10 @@ def visual_iou(thresholds, ious_list, auc):
     plt.fill_between(thresholds, ious_list, color='blue', alpha=0.1)
     plt.text(0.5, 0.5, 'AUC = %0.2f' % auc)
     plot_name = "simCLR.png"
-    file_path = os.path.join('vis', plot_name)  
+    file_path = os.path.join('vis', plot_name)
     if not os.path.exists('vis'):
         os.mkdir('vis')
-    file_path = os.path.join('vis', plot_name)  
+    file_path = os.path.join('vis', plot_name)
     plt.savefig(file_path)
     plt.close()
 
@@ -54,7 +56,7 @@ def visual_iou(thresholds, ious_list, auc):
 #                 negative_keys[i,index] = z1[j]
 #                 index += 1
 #                 negative_keys[i,index] = z2[j]
-#                 index += 1 
+#                 index += 1
 #     # print("positive key is:",positive_key)
 #     # print("negative key is:",negative_keys)
 #     # print("query is",query)
@@ -76,7 +78,7 @@ def load_pairs(csv_path):
                 positive_pairs[img1].append(img2)
             else:
                 negative_pairs[img1].append(img2)
-    
+
     return positive_pairs, negative_pairs
 def contrastive_loss(z1, z2,image_name,positive_pairs,negative_pairs, temperature=0.75):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -89,13 +91,13 @@ def contrastive_loss(z1, z2,image_name,positive_pairs,negative_pairs, temperatur
         # Find the positive and negative keys for the query within the batch
         positive_keys = torch.stack([z1[j] for j in range(batch_size) if image_name[j] in positive_pairs[query_name]]).unsqueeze(0)
         negative_keys = torch.stack([z1[j] for j in range(batch_size) if image_name[j] in negative_pairs[query_name]]).unsqueeze(0)
-            
+
         # Compute the InfoNCE loss for the query
         single_loss = loss(query, positive_keys, negative_keys)
         total_loss += single_loss
     print("total loss is:",total_loss)
     return total_loss/batch_size
-    
+
 
 class SimCLRModel(nn.Module):
     def __init__(self, base_encoder, projection_dim=128):
@@ -128,7 +130,7 @@ class SimCLRModel(nn.Module):
         return proj_z1, proj_z2
 
 # Load the base encoder
-base_encoder = resnet18(pretrained=True) 
+base_encoder = resnet18(pretrained=True)
 # Modify the base encoder to remove the final classification layer
 base_encoder = nn.Sequential(*list(base_encoder.children())[:-1])
 # Create the SimCLR model with the modified base encoder
@@ -182,31 +184,45 @@ max_similarity = 1.0
 
 #         similarities = torch.matmul(F.normalize(proj_z1, dim=1), F.normalize(proj_z2, dim=1).t())
 #         max_similarity = max(max_similarity, similarities.max().item())
+#put image-embeddings inside embeddings class
+embeddings = []
+labels_list = []
+with torch.no_grad():
+    for batch_idx, batch in enumerate(test_loader):
+        img1, img2, label, _, _ = batch
+        proj_z1, proj_z2 = simclr_model(img1, img2)
+        embeddings.extend(proj_z1.cpu().numpy())
+        embeddings.extend(proj_z2.cpu().numpy())
+        labels_list.extend(label.cpu().numpy())
+        labels_list.extend(label.cpu().numpy())
+
+kd_tree = KDTree(embeddings)
+
+# for every embeddings search KDtree
+ious_list = []
 for threshold_percent in thresholds:
     true_positives = 0
     false_positives = 0
     false_negatives = 0
     threshold = float(max_similarity * threshold_percent)
-    print("Current threshold is:",threshold)
-    with torch.no_grad():  # No need to calculate gradients during testing
-        for batch_idx, batch in enumerate(test_loader):
-            img1,img2,label,image_1,image_2= batch
-            proj_z1, proj_z2 = simclr_model(img1, img2)
-            proj_z1_normalized = F.normalize(proj_z1, dim=1)
-            proj_z2_normalized = F.normalize(proj_z2, dim=1)
-            similarities = F.cosine_similarity(proj_z1_normalized.unsqueeze(1), proj_z2_normalized.unsqueeze(0), dim=2)
-            binary_predictions = (similarities >= threshold).float()
-            # print("Current image1 is:",image_1)
-            # print("Current image2 is:",image_2)
-            # print("Current prediction is:",binary_predictions)
-            # print("Current label is:",label)
-            # print("similarity is:",similarities)
-            # print("Number of tp", true_positives)
-            # print("number of fp", false_positives)
-            # print("number of fn", false_negatives)
-            true_positives += ((binary_predictions == 1) & (label == 1)).sum().item()
-            false_positives += ((binary_predictions == 1) & (label == 0)).sum().item()
-            false_negatives += ((binary_predictions == 0) & (label == 1)).sum().item()
+    print("Current threshold is:", threshold)
+
+    for idx, embedding in enumerate(embeddings):
+        #use kdtree find nearest neighbor
+        distances, indices = kd_tree.query(embedding.reshape(1, -1), k=2)  # k=2because nearest neighbor is itself
+        nearest_distance = distances[0][1]
+        nearest_idx = indices[0][1]
+
+        prediction = 1 if nearest_distance < threshold else 0
+        true_label = labels_list[idx]
+
+        if prediction == 1 and true_label == 1:
+            true_positives += 1
+        elif prediction == 1 and true_label == 0:
+            false_positives += 1
+        elif prediction == 0 and true_label == 1:
+            false_negatives += 1
+
     iou = true_positives / (true_positives + false_positives + false_negatives)
     ious_list.append(iou)
 

@@ -1,0 +1,138 @@
+total loss is: tensor(390.7505, grad_fn=<AddBackward0>)
+total loss is: tensor(315.9352, grad_fn=<AddBackward0>)
+Epoch [1/20], Avg. Loss: 16.8259
+total loss is: tensor(322.6641, grad_fn=<AddBackward0>)
+total loss is: tensor(391.6740, grad_fn=<AddBackward0>)
+Epoch [2/20], Avg. Loss: 17.0080
+total loss is: tensor(336.1668, grad_fn=<AddBackward0>)
+total loss is: tensor(328.1332, grad_fn=<AddBackward0>)
+Epoch [3/20], Avg. Loss: 15.8167
+total loss is: tensor(463.5126, grad_fn=<AddBackward0>)
+total loss is: tensor(414.2885, grad_fn=<AddBackward0>)
+Epoch [4/20], Avg. Loss: 20.9000
+total loss is: tensor(364.1242, grad_fn=<AddBackward0>)
+total loss is: tensor(328.1655, grad_fn=<AddBackward0>)
+Epoch [5/20], Avg. Loss: 16.4831
+total loss is: tensor(450.0498, grad_fn=<AddBackward0>)
+total loss is: tensor(279.2396, grad_fn=<AddBackward0>)
+Epoch [6/20], Avg. Loss: 17.3640
+total loss is: tensor(389.5830, grad_fn=<AddBackward0>)
+total loss is: tensor(323.9307, grad_fn=<AddBackward0>)
+Epoch [7/20], Avg. Loss: 16.9884
+total loss is: tensor(314.0730, grad_fn=<AddBackward0>)
+total loss is: tensor(336.1458, grad_fn=<AddBackward0>)
+Epoch [8/20], Avg. Loss: 15.4814
+total loss is: tensor(369.5332, grad_fn=<AddBackward0>)
+total loss is: tensor(274.4417, grad_fn=<AddBackward0>)
+Epoch [9/20], Avg. Loss: 15.3327
+total loss is: tensor(559.8464, grad_fn=<AddBackward0>)
+total loss is: tensor(274.7262, grad_fn=<AddBackward0>)
+Epoch [10/20], Avg. Loss: 19.8708
+total loss is: tensor(307.0193, grad_fn=<AddBackward0>)
+total loss is: tensor(370.4807, grad_fn=<AddBackward0>)
+Epoch [11/20], Avg. Loss: 16.1310
+total loss is: tensor(284.4306, grad_fn=<AddBackward0>)
+total loss is: tensor(311.8602, grad_fn=<AddBackward0>)
+Epoch [12/20], Avg. Loss: 14.1974
+total loss is: tensor(335.6571, grad_fn=<AddBackward0>)
+total loss is: tensor(303.4755, grad_fn=<AddBackward0>)
+Epoch [13/20], Avg. Loss: 15.2174
+total loss is: tensor(315.1898, grad_fn=<AddBackward0>)
+total loss is: tensor(315.8703, grad_fn=<AddBackward0>)
+Epoch [14/20], Avg. Loss: 15.0252
+total loss is: tensor(336.8971, grad_fn=<AddBackward0>)
+total loss is: tensor(294.1008, grad_fn=<AddBackward0>)
+Epoch [15/20], Avg. Loss: 15.0238
+total loss is: tensor(271.4131, grad_fn=<AddBackward0>)
+total loss is: tensor(370.8111, grad_fn=<AddBackward0>)
+Epoch [16/20], Avg. Loss: 15.2911
+total loss is: tensor(341.9160, grad_fn=<AddBackward0>)
+total loss is: tensor(298.9572, grad_fn=<AddBackward0>)
+Epoch [17/20], Avg. Loss: 15.2589
+total loss is: tensor(309.7773, grad_fn=<AddBackward0>)
+total loss is: tensor(315.2552, grad_fn=<AddBackward0>)
+Epoch [18/20], Avg. Loss: 14.8817
+total loss is: tensor(352.7057, grad_fn=<AddBackward0>)
+total loss is: tensor(268.3127, grad_fn=<AddBackward0>)
+Epoch [19/20], Avg. Loss: 14.7862
+total loss is: tensor(339.0752, grad_fn=<AddBackward0>)
+total loss is: tensor(306.3770, grad_fn=<AddBackward0>)
+Epoch [20/20], Avg. Loss: 15.3679
+Current threshold is: 0.0
+Current threshold is: 0.25
+Current threshold is: 0.5
+Current threshold is: 0.75
+Current threshold is: 1.0
+Average Loss on Test Set: 0.0000
+Intersection over Union (IOU): 0.0925
+C:\Users\frank\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+C:\Users\frank\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet18_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet18_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+total loss is: tensor(343.5792, grad_fn=<AddBackward0>)
+total loss is: tensor(421.6998, grad_fn=<AddBackward0>)
+Epoch [1/20], Avg. Loss: 18.2209
+total loss is: tensor(377.3222, grad_fn=<AddBackward0>)
+total loss is: tensor(326.5865, grad_fn=<AddBackward0>)
+Epoch [2/20], Avg. Loss: 16.7597
+total loss is: tensor(328.8221, grad_fn=<AddBackward0>)
+total loss is: tensor(403.5276, grad_fn=<AddBackward0>)
+Epoch [3/20], Avg. Loss: 17.4369
+total loss is: tensor(454.2047, grad_fn=<AddBackward0>)
+total loss is: tensor(333.7108, grad_fn=<AddBackward0>)
+Epoch [4/20], Avg. Loss: 18.7599
+total loss is: tensor(440.8071, grad_fn=<AddBackward0>)
+total loss is: tensor(287.1734, grad_fn=<AddBackward0>)
+Epoch [5/20], Avg. Loss: 17.3329
+total loss is: tensor(307.6299, grad_fn=<AddBackward0>)
+total loss is: tensor(327.6310, grad_fn=<AddBackward0>)
+Epoch [6/20], Avg. Loss: 15.1253
+total loss is: tensor(438.2064, grad_fn=<AddBackward0>)
+total loss is: tensor(325.8221, grad_fn=<AddBackward0>)
+Epoch [7/20], Avg. Loss: 18.1912
+total loss is: tensor(345.4248, grad_fn=<AddBackward0>)
+total loss is: tensor(279.1850, grad_fn=<AddBackward0>)
+Epoch [8/20], Avg. Loss: 14.8717
+total loss is: tensor(435.2058, grad_fn=<AddBackward0>)
+total loss is: tensor(245.7473, grad_fn=<AddBackward0>)
+Epoch [9/20], Avg. Loss: 16.2132
+total loss is: tensor(339.8808, grad_fn=<AddBackward0>)
+total loss is: tensor(308.2995, grad_fn=<AddBackward0>)
+Epoch [10/20], Avg. Loss: 15.4329
+total loss is: tensor(278.3389, grad_fn=<AddBackward0>)
+total loss is: tensor(313.9966, grad_fn=<AddBackward0>)
+Epoch [11/20], Avg. Loss: 14.1032
+total loss is: tensor(401.0455, grad_fn=<AddBackward0>)
+total loss is: tensor(364.0690, grad_fn=<AddBackward0>)
+Epoch [12/20], Avg. Loss: 18.2170
+total loss is: tensor(375.6445, grad_fn=<AddBackward0>)
+total loss is: tensor(251.9181, grad_fn=<AddBackward0>)
+Epoch [13/20], Avg. Loss: 14.9420
+total loss is: tensor(290.8745, grad_fn=<AddBackward0>)
+total loss is: tensor(353.8986, grad_fn=<AddBackward0>)
+Epoch [14/20], Avg. Loss: 15.3517
+total loss is: tensor(335.0603, grad_fn=<AddBackward0>)
+total loss is: tensor(310.3987, grad_fn=<AddBackward0>)
+Epoch [15/20], Avg. Loss: 15.3681
+total loss is: tensor(380.5932, grad_fn=<AddBackward0>)
+total loss is: tensor(298.1321, grad_fn=<AddBackward0>)
+Epoch [16/20], Avg. Loss: 16.1601
+total loss is: tensor(324.1189, grad_fn=<AddBackward0>)
+total loss is: tensor(333.3862, grad_fn=<AddBackward0>)
+Epoch [17/20], Avg. Loss: 15.6549
+total loss is: tensor(332.2069, grad_fn=<AddBackward0>)
+total loss is: tensor(347.8401, grad_fn=<AddBackward0>)
+Epoch [18/20], Avg. Loss: 16.1916
+total loss is: tensor(354.9077, grad_fn=<AddBackward0>)
+total loss is: tensor(275.5069, grad_fn=<AddBackward0>)
+Epoch [19/20], Avg. Loss: 15.0099
+total loss is: tensor(361.5381, grad_fn=<AddBackward0>)
+total loss is: tensor(409.0398, grad_fn=<AddBackward0>)
+Epoch [20/20], Avg. Loss: 18.3471
+Current threshold is: 0.0
+Current threshold is: 0.25
+Current threshold is: 0.5
+Current threshold is: 0.75
+Current threshold is: 1.0
+Average Loss on Test Set: 0.0000
+Intersection over Union (IOU): 0.5868
